@@ -12,7 +12,7 @@ GPUCompiler.reset_runtime()
 function precompile_runtime(caps=CUDA.llvm_compat(LLVM.version()).cap)
     dummy_source = FunctionSpec(()->return, Tuple{})
     params = CUDACompilerParams()
-    JuliaContext() do ctx
+    Context() do ctx
         for cap in caps
             # NOTE: this often runs when we don't have a functioning set-up,
             #       so we don't use CUDACompilerTarget(...) which requires NVML
